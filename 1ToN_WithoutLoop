@@ -1,0 +1,31 @@
+import java.io.*;
+import java.util.*;
+
+class Practice {
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        Practice p=new Practice();
+        System.out.println("Ascending Order:");
+        p.printAscending(1,n);
+        System.out.println("Descending Order:");
+        p.printDescending(1,n);
+
+    }
+    int printAscending(int i,int num){
+        if(i>num){
+            return i;
+        }
+        System.out.println(i);
+        i+=1;
+        return printAscending(i,num);
+    }
+    void printDescending(int i,int num){
+        if(i>num){
+            return ;
+        }
+        printDescending(i+1,num);
+        System.out.println(i);
+
+    }
+}
