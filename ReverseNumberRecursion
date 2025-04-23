@@ -1,0 +1,19 @@
+import java.io.*;
+import java.util.*;
+
+class Practice {
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        Practice p=new Practice();
+        int n1=p.reverse(0,n);
+        System.out.println(n1);
+
+    }
+    int reverse(int rev,int num){
+        if(num==0){
+            return rev;
+        }
+        return reverse((rev*10)+(num%10),(num/10));
+    }
+}
