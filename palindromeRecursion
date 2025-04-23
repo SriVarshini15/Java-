@@ -1,0 +1,27 @@
+import java.io.*;
+import java.util.*;
+
+class Practice {
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        String word=sc.nextLine();
+        Practice p=new Practice();
+        if(p.palindrome(word,0,word.length()-1)){
+            System.out.println("Is a palindrome");
+        }else{
+            System.out.println("Is not a palindrome");
+        }
+
+    }
+    Boolean palindrome(String s,int start,int end){
+        if(start>=end){
+            return true;
+        }
+        if(s.charAt(start)!=s.charAt(end)){
+            return false;
+        }else{
+            return palindrome(s, start+1, end-1);
+        }
+    }
+    
+}
