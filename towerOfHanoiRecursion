@@ -1,0 +1,20 @@
+import java.io.*;
+import java.util.*;
+
+class Practice {
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        towerOfHanoi(n,'A','C','B');
+
+    }
+    public static void towerOfHanoi(int n,char sur,char des,char aux){
+        if(n==1){
+            System.out.println("move disk 1 from "+sur+" to "+des);
+            return;
+        }
+        towerOfHanoi(n-1, sur, aux,des);
+        System.out.println("Move disk "+n+" from "+sur+" to "+des);
+        towerOfHanoi(n-1, aux, des, sur);
+    }
+}
