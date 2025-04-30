@@ -1,0 +1,29 @@
+import java.io.*;
+import java.util.*;
+
+class Practice {
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int len=sc.nextInt();
+        int n=sc.nextInt();
+        int price[]=new int[n];
+        for(int i=0;i<n;i++){
+            price[i]=sc.nextInt();
+        }
+        int dp[][]=new int[n+1][len+1];
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=len;j++){
+                if(i<=j){
+                    dp[i][j]=Math.max(
+                        dp[i-1][j], 
+                        price[i-1]+dp[i][j-i]);
+                }else{
+                    dp[i][j]=dp[i-1][j];
+                }
+            }
+        }
+        System.out.println(dp[n][len]);
+
+    }
+    
+}
