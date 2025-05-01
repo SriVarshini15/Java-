@@ -1,0 +1,33 @@
+import java.io.*;
+import java.util.*;
+
+class Practice {
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int arr[]=new int[n];
+        for(int i=0;i<n;i++){
+            arr[i]=sc.nextInt();
+        }
+        subarray(arr,0,0,n);
+    }
+    public static void subarray(int arr[],int start,int end,int n){
+        if(start==n){
+            return;
+        }else if(end==n){
+            subarray(arr,start+1,start+1,n);
+        }else{
+            System.out.print("[");
+            for(int i=start;i<=end;i++){
+                System.out.print(arr[i]);
+                if(i!=end){
+                    System.out.print(",");
+                }
+            }
+            System.out.print("]");
+            System.out.println();
+            subarray(arr, start, end+1, n);
+        }
+    }
+    
+}
