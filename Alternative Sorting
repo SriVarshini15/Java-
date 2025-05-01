@@ -1,0 +1,44 @@
+import java.io.*;
+import java.util.*;
+
+class Practice {
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int arr[]=new int[n];
+        for(int i=0;i<n;i++){
+            arr[i]=sc.nextInt();
+        }
+        arr=sorting(arr,n);
+        int left=0;
+        int right=n-1;
+        boolean flag=true;
+        while(left<=right){
+            if(flag){
+                System.out.print(arr[left]+" ");
+                left++;
+            }else{
+                System.out.print(arr[right]+" ");
+                right--;
+            }
+            flag=!flag;
+        }
+        
+    }
+    public static int[] sorting(int arr[],int n){
+        for(int i=0;i<n-1;i++){
+            int ind=i;
+            for(int j=i+1;j<n;j++){
+                if(arr[j]>arr[ind]){
+                    ind=j;
+                }
+            }
+            int temp=arr[ind];
+            arr[ind]=arr[i];
+            arr[i]=temp;
+        }
+        return arr;
+    }
+    
+}
+
