@@ -1,0 +1,111 @@
+import java.io.*;
+import java.util.Scanner;
+
+class Node{
+    Node prev;
+    int data;
+    Node next;
+    Node(int data){
+        this.prev=null;
+        this.data=data;
+        this.next=null;
+    }
+}
+public class practice{
+    Node temp;
+    Node head;
+    public void link(Scanner sc){
+        int d=sc.nextInt();
+        Node newNode=new Node(d);
+        if(head==null){
+            head=newNode;
+            temp=head;
+        }else{
+            newNode.prev=temp;
+            temp.next=newNode;
+            temp=newNode;
+        }
+    }
+    public void printForward(){
+        Node current=head;
+        while(current!=null){
+            System.out.println(current.data);
+            current=current.next;
+        }
+    }
+    public void printBackward(){
+        Node current=head;
+        while(current.next!=null){
+            current=current.next;
+        }
+        while(current!=null){
+            System.out.println(current.data);
+            current=current.prev;
+        }
+    }
+    public void inserFront(Scanner sc){
+        int d=sc.nextInt();
+        Node newNode=new Node(d); 
+        newNode.next=head;
+        head.prev=newNode;
+        head=newNode;
+    }
+    public void insertEnd(Scanner sc){
+        int d=sc.nextInt();
+        Node newNode=new Node(d);
+        Node current=head;
+        while (current.next!=null) {
+            current=current.next;
+        }
+        current.next=newNode;
+        newNode.prev=current;
+
+    }
+    public void insert(Scanner sc){
+        int d=sc.nextInt();
+        int pos=sc.nextInt();
+        Node current=head;
+        Node newNode=new Node(d);
+        for(int i=1;i<pos-1;i++){
+            current=current.next;
+        }
+        newNode.next=current.next;
+        current.next=newNode;
+        newNode.prev=current;
+        current.next.prev=newNode;
+    }
+    public void deleteFront(){
+        head=head.next;
+        head.prev=null;
+    }
+    public void deleteEnd(){
+        Node current=head;
+        while(current.next!=null){
+            current=current.next;
+        }
+        current.prev.next=null;
+    }
+    public void delete(Scanner sc){
+        int pos=sc.nextInt();
+        Node current=head;
+        for(int i=1;i<pos-1;i++){
+            current=current.next;
+        }
+        Node curNext=current.next;
+        current.next=curNext.next;
+        curNext.next.prev=current;
+    }
+    public static void main(String args[]){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        practice p=new practice();
+        for(int i=0;i<n;i++){
+            p.link(sc);
+        }
+        //p.printBackward();
+        //p.inserFront(sc);
+        //p.printForward();
+        p.delete(sc);
+        p.printForward();
+    }
+}
