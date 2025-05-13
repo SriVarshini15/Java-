@@ -1,0 +1,27 @@
+import java.util.*;
+
+class Practice {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine();
+        Stack<Integer> stack = new Stack<>();
+        int maxLength = 0;
+        stack.push(-1); 
+
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == '(') {
+                stack.push(i);
+            } else {
+                stack.pop();
+                if (stack.isEmpty()) {
+                    stack.push(i); // Reset base
+                } else {
+                    maxLength = Math.max(maxLength, i - stack.peek());
+                }
+            }
+        }
+
+        System.out.println(maxLength);
+        sc.close();
+    }
+}
