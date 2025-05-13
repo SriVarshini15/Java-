@@ -14,7 +14,7 @@ class Practice {
             } else {
                 stack.pop();
                 if (stack.isEmpty()) {
-                    stack.push(i); // Reset base
+                    stack.push(i); 
                 } else {
                     maxLength = Math.max(maxLength, i - stack.peek());
                 }
