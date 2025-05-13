@@ -1,0 +1,30 @@
+/*
+Given an array of integers, your task is to move all zeroes to the end of the array while
+maintaining the relative order of the non-zero elements. You must perform the operation in-
+place, meaning you should manipulate the original array without creating a new one.
+*/
+import java.util.*; 
+public class Main
+{
+	public static void main(String[] args) {
+     int arr[]={3,0,2,0,6,0,05,8};
+     int pos=0;
+     int curind=0;
+     while(curind<arr.length){
+         if(arr[curind]>0){
+             int temp=arr[curind];
+             arr[curind]=arr[pos];
+             arr[pos]=temp;
+             curind++;
+             pos++;
+         }else{
+             curind++;
+         }
+     }
+     while(pos<arr.length){
+         arr[pos]=0;
+         pos++;
+     }
+     System.out.println(Arrays.toString(arr));
+	}
+}
