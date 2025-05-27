@@ -1,0 +1,74 @@
+
+import java.util.*;
+
+class Node{
+    int data;
+    Node next;
+    Node(int data){
+        this.data=data;
+        this.next=null;
+    }
+}
+
+public class practice {
+    Node head;
+    Node temp;
+    public void link(int d){
+        Node newNode=new Node(d);
+        if(head==null){
+            head=newNode;
+            temp=head;
+        }else{
+            temp.next=newNode;
+            temp=newNode;
+        }
+
+    }
+    public void print(){
+        Node current=head;
+        while(current!=null){
+            System.out.println(current+"  "+ current.data+ "  "+ current.next);
+            current=current.next;
+        }
+    }
+    
+    public void min(){
+        System.out.println(head.data);
+    }
+    public void max(){
+        Node current=head;
+        while(current.next!=null){
+            current=current.next;
+        }
+        System.out.println(current.data);
+    }
+    public void removeDup(){
+        Node current=head;
+        while(current.next!=null){
+            Node nextNode=current.next;
+            Node prev=head;
+            while(nextNode!=null){
+                if(current.data==nextNode.data){
+                    prev.next=nextNode.next;
+                }
+                prev=nextNode;
+                nextNode=nextNode.next;
+            }
+            current=current.next;
+        }
+    }
+    public static void main(String[] args) {
+        practice p=new practice();
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        for(int i=0;i<n;i++){
+            int data=sc.nextInt();
+            p.link(data);
+        }
+        p.print();
+        p.removeDup();
+        p.print();
+
+    }
+}
+
