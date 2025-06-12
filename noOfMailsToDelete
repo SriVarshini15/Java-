@@ -1,0 +1,25 @@
+/*
+The principal has a problem with repetitions. Every time someone sends the same email twice he becomes angry and starts yelling. His assistant filters the mails so that all the unique mails are sent only once, and if someone is sending the same mail again and again, he deletes them. Write a program that will see the list of roll numbers of the student and find how many emails are to be deleted.
+Sample Input:  6,  [ 1, 3, 3, 4, 3, 3 ]
+Sample Output: 3
+*/
+import java.util.*;
+
+class cse {
+    public static void main(String arg[]) {
+        Scanner sc = new Scanner(System.in);
+        int n=sc.nextInt();
+        int count=0;
+        HashSet<Integer> set=new HashSet<>();
+        for(int i=0;i<n;i++){
+            int num=sc.nextInt();
+            if(set.contains(num)){
+                count++;
+            }else{
+                set.add(num);
+            }
+        }
+        System.out.println(count);
+    }
+}
+
