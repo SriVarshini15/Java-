@@ -1,0 +1,49 @@
+/*
+Frogs are sitting on the x-axis of the plane. The x-axis is represented by a given string. * represents a frog and | represents a stone.
+The string consists of only the above-mentioned characters. You are given a start index array and end index array, and calculate the number of frogs between the two stones including the endpoint.
+Note – Array is 1 indexed
+Example:
+ s = ” |**|*| ”  
+start Index = [ 1, 1 ]
+end Index = [ 5, 6 ]
+For the first pair of indices (1,5), the substrings are “|**|*”. There are 2 stars between a pair of bars. For the second pair of indices (1,6), the substring is  “|**|*|” and there are 2+1=3 stars in between the bars. Both of the answers are returned to the array [2,3].
+*/
+import java.io.*;
+import java.util.*;
+
+class cse{
+    public static void main(String arg[]){
+        Scanner sc=new Scanner(System.in);
+        String str=sc.nextLine();
+        int len=str.length();
+        int n=sc.nextInt();
+        int start[]=new int[n];
+        int end[]=new int[n];
+
+        for(int i=0;i<n;i++){
+            start[i]=sc.nextInt();
+        }
+
+        for(int i=0;i<n;i++){
+            end[i]=sc.nextInt();
+        }
+        int temp=0;
+        int res[]=new int[n];
+
+        while(temp!=n){
+            boolean stone=false;
+            for(int j=start[temp]-1;j<end[temp]-1;j++){
+                if(str.charAt(j)=='|'){
+                    stone =(!stone);
+                }
+                if(stone ==false){
+                    continue;
+                }else if (stone && str.charAt(j) == '*') {
+                    res[temp]++;
+                }
+            }
+            temp++;
+        }
+        System.out.println(Arrays.toString(res));
+    }
+}
