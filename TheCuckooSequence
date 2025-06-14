@@ -1,0 +1,39 @@
+/*
+The Cuckoo Sequence
+A Cuckoo Sequence is defined as shown.
+Cuckoo[1]=0
+Cuckoo[2]=1
+Cuckoo[n]=1*Cuckoo[n-1]+2*Cuckoo[n-2]+3*1, for n>2
+Given n(1<= n <=10^8), find Cuckoo[n].
+Input Specification:
+Input1: Integer n
+Output Specification:
+Return the value of Cuckoo[n]
+Example:
+Input: 3
+Output: 4
+Explanation: cuckoo(3) = 1*cuckoo(2) + 2*cuckoo(1) + 3*1
+= 1*1 + 2*0 + 3 = 4
+*/
+
+import java.util.*;
+
+class cse {
+    public static void main(String arg[]) {
+        Scanner sc = new Scanner(System.in);
+        int n=sc.nextInt();
+        int res=0;
+        int arr[]=new int[n+1];
+        if(n>=0){
+            arr[0]=0;
+        }if(n>=1){
+            arr[1]=1;
+        }if(n>=2){
+            arr[2]=2;
+        }
+        for(int i=3;i<=n;i++){
+        arr[i]=(1*arr[i-1])+(2*arr[i-2])+3*1;
+        }
+        System.out.println(arr[n]);
+    }
+}
