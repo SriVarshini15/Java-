@@ -1,0 +1,50 @@
+/*
+
+You are given an array/list of ‘N’ integers. You are supposed to return the maximum sum of the subsequence with the constraint that no two elements are adjacent in the given array/list.
+Note:
+A subsequence of an array/list is obtained by deleting some number of elements (can be zero) from the array/list, leaving the remaining elements in their original order.
+Detailed explanation ( Input/output format, Notes, Images )
+Constraints:
+1 <= T <= 500
+1 <= N <= 1000
+0 <= ARR[i] <= 10^5
+
+Where 'ARR[i]' denotes the 'i-th' element in the array/list.
+
+Time Limit: 1 sec.
+Sample Input 1:
+2
+3
+1 2 4
+4
+2 1 4 9
+
+*/
+
+import java.util.*;
+
+class cse {
+    public static void main(String arg[]) {
+        Scanner sc = new Scanner(System.in);
+    
+        int times=sc.nextInt();
+        for(int i=0;i<times;i++){
+            int n=sc.nextInt();
+            int arr[]=new int[n];
+
+            for(int j=0;j<n;j++){
+                arr[j]=sc.nextInt();
+            }
+            int sum1=0;
+            int sum2=0;
+            for(int k=0;k<n;k++){
+                if(k%2==0){
+                    sum1+=arr[k];
+                }else{
+                    sum2+=arr[k];
+                }
+            }
+            System.out.println(sum1>sum2?sum1:sum2);
+        }
+    }
+}
