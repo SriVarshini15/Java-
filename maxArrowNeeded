@@ -1,0 +1,39 @@
+/*
+You are given an array 'ARR' of N integers. Each integer represents the height of a balloon. So, there are N balloons lined up.
+Your aim is to destroy all these balloons. Now, a balloon can only be destroyed if the player shoots its head. So, to do the needful, he/ she shoots an arrow from the left to the right side of the platform, from an arbitrary height he/she chooses. The arrow moves from left to right, at a chosen height ARR[i] until it finds a balloon. The moment when an arrow touches a balloon, the balloon gets destroyed and disappears and the arrow continues its way from left to right at a height decreased by 1. Therefore, if the arrow was moving at height ARR[i], after destroying the balloon it travels at height ARR[i]-1. The player wins this game if he destroys all the balloons in minimum arrows.
+You have to return the minimum arrows required to complete the task.
+Detailed explanation ( Input/output format, Notes, Images )
+Constraints:
+1 <= N <= 10^5
+1 <= ARR[i] <= 10^9
+
+Time Limit: 1sec
+Sample Input 1:
+5
+2 1 5 4 3
+Sample Output 1:
+2
+*/
+
+import java.util.*;
+
+class cse {
+    public static void main(String arg[]) {
+        Scanner sc = new Scanner(System.in);
+        int n=sc.nextInt();
+        int arr[]=new int[n];
+        for(int i=0;i<n;i++){
+            arr[i]=sc.nextInt();
+        }
+        int count=1;
+        for(int i=1;i<n;i++){
+            if(arr[i]==arr[i-1]-1){
+                continue;
+            }else{
+                count++;
+            }
+        }
+        System.out.println(count);
+    }
+}
+
