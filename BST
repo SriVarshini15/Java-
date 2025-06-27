@@ -1,0 +1,100 @@
+import java.util.*;
+
+class Node {
+    int data;
+    Node left, right;
+    Node(int data) {
+        this.data = data;
+        left = null;
+        right = null;
+    }
+}
+
+class cse {
+    public Node insert(Node root, int val) {
+        if (root == null) {
+            return new Node(val);
+        }
+        if (val < root.data) {
+            root.left = insert(root.left, val);
+        } else if (val > root.data) {
+            root.right = insert(root.right, val);
+        }
+        return root;
+    }
+
+    public void inorder(Node root) {
+        if (root == null) return;
+        inorder(root.left);
+        System.out.print(root.data + " ");
+        inorder(root.right);
+    }
+
+    public void preorder(Node root) {
+        if (root == null) return;
+        System.out.print(root.data + " ");
+        preorder(root.left);
+        preorder(root.right);
+    }
+
+    public void postorder(Node root) {
+        if (root == null) return;
+        postorder(root.left);
+        postorder(root.right);
+        System.out.print(root.data + " ");
+    }
+
+    public Node delete(Node root, int del){
+        if(del<root.data){
+            root.left=delete(root.left, del);
+        }else if (del > root.data) {
+            root.right = delete(root.right, del);
+        } else {
+            if (root.left == null && root.right == null)
+            return null;
+            if (root.left == null)
+                return root.right;
+            if (root.right == null)
+                return root.left;
+
+            root.data=minValue(root.right);
+            root.right=delete(root.right, root.data);
+        }
+        return root;
+    }
+    private int minValue(Node root){
+        while(root.left!=null){
+            root=root.left;
+        }
+        return root.data;
+    }
+    public static void main(String[] args) {
+        cse cs = new cse();
+        Scanner sc = new Scanner(System.in);
+        Node root = null;
+        int val;
+        while ((val = sc.nextInt()) != -1) {
+            root = cs.insert(root, val);
+        }
+
+        System.out.print("Inorder: ");
+        cs.inorder(root);
+        System.out.println();
+
+        System.out.print("Postorder: ");
+        cs.postorder(root);
+        System.out.println();
+
+        System.out.print("Preorder: ");
+        cs.preorder(root);
+        System.out.println();
+
+        cs.delete(root,20);
+        System.out.print("Inorder after deletion: ");
+        cs.inorder(root);
+        System.out.println();
+    }
+}
+
+
+
