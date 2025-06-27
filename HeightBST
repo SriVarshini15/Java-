@@ -1,0 +1,50 @@
+import java.util.*;
+
+class Node {
+    int data;
+    Node left;
+    Node right;
+
+    Node(int data) {
+        this.data = data;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+
+class cse {
+    Scanner sc = new Scanner(System.in); // move scanner to class level to avoid re-creating each time
+
+    public Node create() {
+        System.out.print("Enter value (-1 for no node): ");
+        int data = sc.nextInt();
+
+        if (data == -1) {
+            return null;
+        }
+
+        Node node = new Node(data);
+        System.out.println("Enter left child of " + data);
+        node.left = create();
+        System.out.println("Enter right child of " + data);
+        node.right = create();
+
+        return node;
+    }
+
+    public int height(Node root){
+        if (root == null) return 0;
+        int leftHeight=height(root.left);
+        int rightHeight=height(root.right);
+        return Math.max(leftHeight,rightHeight)+1;
+    }
+
+    public static void main(String[] args) {
+        cse cs = new cse();
+        Node root = cs.create();
+        System.out.print("Height of the tree: ");
+        System.out.print(cs.height(root));
+    }
+}
+ 
