@@ -1,0 +1,40 @@
+import java.util.*;
+class cse {
+    public boolean matrix[][];
+    public int n;
+    public cse(int n){
+        this.n=n;
+        matrix=new boolean[this.n][this.n];
+    }
+    public void add(int i,int j){
+        matrix[i][j]=true;
+        matrix[j][i]=true;
+    }
+    public void remove(int i,int j){
+        matrix[i][j]=false;
+        matrix[j][i]=false;
+    }
+    public void print(){
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                System.out.print(matrix[i][j]?1:0);
+                System.out.print(" ");
+            }
+            System.out.println();
+        }
+    }
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        cse cs=new cse(n);
+        cs.add(1,2);
+        cs.add(3,1);
+        cs.add(3,4);
+        cs.print();
+        System.out.println('\n');
+        cs.remove(1, 2);
+        cs.print();
+
+    }
+}
+ 
