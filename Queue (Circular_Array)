@@ -1,0 +1,78 @@
+import java.util.*;
+
+class cse {
+    public int queue[];
+    public int front = -1;
+    public int rear = -1;
+    public int size;
+
+    cse(int n) {
+        queue = new int[n];
+        size = n;
+    }
+
+    public void addItem(Scanner sc, int n) {
+        if ((rear + 1) % size == front) {
+            System.out.println("Queue Overflow...");
+            return;
+        }
+        int val = sc.nextInt();
+        if (front == -1) {
+            front = rear = 0;
+        } else {
+            rear = (rear + 1) % size;
+        }
+        queue[rear] = val;
+    }
+
+    public void removeItem(int n) {
+        if (front == -1) {
+            System.out.println("Queue Underflow...");
+            return;
+        }
+        if (front == rear) {
+            front = rear = -1;
+        } else {
+            front = (front + 1) % size;
+        }
+    }
+
+    public void print(int n) {
+        if (front == -1) {
+            System.out.println("Queue is empty.");
+            return;
+        }
+        int i = front;
+        System.out.print("Queue: ");
+        while (true) {
+            System.out.print(queue[i] + " ");
+            if (i == rear) break;
+            i = (i + 1) % size;
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        cse cs = new cse(n);
+        int option = 1;
+        while (option != -1) {
+            System.out.println("Enter 1.add 2.delete 3.print else -1 to exit: ");
+            option = sc.nextInt();
+            switch (option) {
+                case 1:
+                    cs.addItem(sc, n);
+                    break;
+                case 2:
+                    cs.removeItem(n);
+                    break;
+                case 3:
+                    cs.print(n);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+}
