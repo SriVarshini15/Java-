@@ -1,0 +1,74 @@
+import java.io.*;
+import java.util.*;
+
+class Node{
+    int data;
+    Node next=null;
+    Node(int data){
+        this.data=data;
+    }
+}
+
+class cse{
+    Node front=null;
+    Node rear =null;
+
+    public void addItem(Scanner sc){
+        int data=sc.nextInt();
+        Node newNode =new Node(data);
+        if(front==null){
+            front=newNode;
+            rear=newNode;
+        }else{
+            rear.next=newNode;
+            rear=newNode;
+        }
+    }
+    public void removeItem(){
+        if (front == null) {
+            System.out.println("Queue Underflow...");
+            return;
+        }
+
+        if(front==rear){
+            front = rear = null;
+            return;
+        }
+        front=front.next;
+    }
+    public void print(){
+        Node temp=front;
+        while(temp!=null){
+            System.out.print(temp.data+" ");
+            temp=temp.next;
+        }
+         System.out.println();
+    }
+    public static void main(String arg[]){
+        cse cs=new cse();
+        int option=1;
+        Scanner sc=new Scanner(System.in);
+        while(option!=-1){
+            System.out.println("Enter 1.add 2.delete 3.print else -1 to exit: ");
+            option=sc.nextInt();
+            switch(option){
+                case 1:
+                    cs.addItem(sc);
+                    break;
+                case 2:
+                    cs.removeItem();
+                    break;
+                case 3:
+                    cs.print();
+                    break;
+                case -1:
+                    System.out.println("Exiting...");
+                    break;
+                default:
+                    System.out.println("Invalid option. Try again.");
+
+            }
+        }
+        sc.close();
+    }
+}
