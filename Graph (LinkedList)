@@ -1,0 +1,129 @@
+import java.util.*;
+
+class Node{
+    int data;
+    Node next=null;
+    Node(int data){
+        this.data=data;
+    }
+
+}
+
+
+class cse {
+    public Node list[];
+    public int n;
+    cse(int n){
+        this.n=n;
+        list = new Node[n];
+    }
+
+    public Node create(Scanner sc){
+        int data=sc.nextInt();
+        Node head=null;
+        Node temp=head;
+
+        while(data!=-1){
+            Node newNode=new Node(data);
+            if(head==null){
+                
+                head=newNode;
+                temp=head;
+            }else{
+               
+                temp.next=newNode;
+                temp=temp.next;
+            }
+            data=sc.nextInt();
+        }
+
+        return head;
+    }
+    public void print(Node temp){
+
+        while(temp!=null){
+            System.out.print(temp.data+" ");
+            temp=temp.next;
+        }
+    }
+    public void addEdge(Node temp,Scanner sc){
+
+        while(temp.next!=null){
+            temp=temp.next;
+        }
+        int data=sc.nextInt();
+        Node newNode=new Node(data);
+        temp.next=newNode;
+    }
+
+    /* public void delNode(Node head,int val){
+        Node temp=head;
+        while(temp.next != null && temp.next.data!=val){
+            temp=temp.next;
+        }
+        if (temp.next != null) {
+            temp.next = temp.next.next;
+        } else {
+            System.out.println("Value not found.");
+        }
+        
+    } */
+   public Node delNode(Node head, int val) {
+    if (head == null) return null;
+
+    if (head.data == val) {
+        return head.next; // head deleted
+    }
+
+    Node temp = head;
+    while (temp.next != null && temp.next.data != val) {
+        temp = temp.next;
+    }
+
+    if (temp.next != null) {
+        temp.next = temp.next.next;
+    } else {
+        System.out.println("Value not found.");
+    }
+
+    return head;
+}
+    public static void main(String[] args) {
+
+        Scanner sc=new Scanner(System.in);
+        int num=sc.nextInt();
+        cse cs=new cse(num);
+        cs.list=new Node[cs.n];
+
+        for(int i=0;i<cs.n;i++){
+            cs.list[i]=cs.create(sc);
+        }
+
+        for(int i=0;i<cs.n;i++){
+            System.out.print("Adjacency list of node " + i + ": ");
+            cs.print(cs.list[i]);
+            System.out.println();
+        }
+        System.out.println("Add node to item ");
+        int c=sc.nextInt();
+        cs.addEdge(cs.list[c], sc);
+
+        for(int i=0;i<cs.n;i++){
+            System.out.print("Adjacency list of node: " + i + ": ");
+            cs.print(cs.list[i]);
+            System.out.println();
+        }
+
+        System.out.println("List item and then value to delete : ");
+        int item=sc.nextInt();
+        int val=sc.nextInt();
+        cs.delNode(cs.list[item], val);
+
+        for(int i=0;i<cs.n;i++){
+            System.out.print("Adjacency list of node: " + i + ": ");
+            cs.print(cs.list[i]);
+            System.out.println();
+        }
+    }
+}
+ 
