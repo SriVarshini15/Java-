@@ -1,0 +1,89 @@
+import java.io.*;
+import java.util.*;
+
+class Node{
+    int data;
+    Node left=null;
+    Node right=null;
+    Node(int data){
+        this.data=data;
+    }
+}
+
+class cse{
+    Node front=null;
+    Node rear =null;
+
+    public void addItem(Scanner sc){
+        int data=sc.nextInt();
+        Node newNode =new Node(data);
+        if(front==null){
+            front=newNode;
+            rear=newNode;
+        }else{
+            rear.left=newNode;
+            newNode.right=rear;
+            rear=newNode;
+        }
+    }
+    public void removeItem(){
+        if (front == null) {
+            System.out.println("Queue Underflow...");
+            return;
+        }
+
+        if(front==rear){
+            front = rear = null;
+            return;
+        }
+        front=front.left;
+        front.right=null;
+    }
+    public void printForward(){
+        Node temp=front;
+        while(temp!=null){
+            System.out.print(temp.data+" ");
+            temp=temp.left;
+        }
+         System.out.println();
+    }
+
+    public void printBackward(){
+        Node temp=rear;
+        while(temp!=null){
+            System.out.print(temp.data+" ");
+            temp=temp.right;
+        }
+        System.out.println();
+    }
+    public static void main(String arg[]){
+        cse cs=new cse();
+        int option=1;
+        Scanner sc=new Scanner(System.in);
+        while(option!=-1){
+            System.out.println("Enter 1.add 2.delete 3.printForward 4.printBackward else -1 to exit: ");
+            option=sc.nextInt();
+            switch(option){
+                case 1:
+                    cs.addItem(sc);
+                    break;
+                case 2:
+                    cs.removeItem();
+                    break;
+                case 3:
+                    cs.printForward();
+                    break;
+                case 4:
+                    cs.printBackward();
+                    break;
+                case -1:
+                    System.out.println("Exiting...");
+                    break;
+                default:
+                    System.out.println("Invalid option. Try again.");
+
+            }
+        }
+        sc.close();
+    }
+}
