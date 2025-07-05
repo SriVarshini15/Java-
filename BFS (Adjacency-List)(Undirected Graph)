@@ -1,0 +1,49 @@
+import java.io.*;
+import java.util.*;
+
+class cse{
+    int n;
+    cse(int n){
+        this.n=n;
+    }
+    int queue[]=new int[100];
+    int front=0;
+    int rear=0;
+    public void push(int val){
+        queue[rear++]=val;
+    }
+    public int pop(){
+        if(front==rear){
+            System.out.println("Queue Underflow...");
+            return -1;
+        }
+        return queue[front++];
+    }
+    public static void main(String arg[]){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        cse cs=new cse(n);
+        int matrix[][]=new int[n][n];
+
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                matrix[i][j]=sc.nextInt();
+            }
+        }
+        int visited[]=new int[n];
+        visited[0]=1;
+        cs.push(0);
+        while(cs.front<cs.rear){
+            int temp=cs.pop();
+            System.out.print((temp+1)+" ");
+
+            for(int j=0;j<n;j++){
+                if(matrix[temp][j]==1 && visited[j]==0){
+                    cs.push(j);
+                    visited[j]=1;
+                }
+            }
+        }
+
+    }
+}
