@@ -1,0 +1,43 @@
+import java.io.*;
+import java.util.*;
+
+class cse {
+    public static void main(String arg[]) {
+        int arr[] = {2, 3, 10, 15, 35, 25, 40, 50};
+        int intial[] = new int[arr.length];
+        int end[] = new int[arr.length];
+        int count[] = new int[arr.length];
+
+        for (int i = 0; i < arr.length - 1; i++) {
+            int temp = 0;
+            inner: for (int j = i; j < arr.length - 1; j++) {
+                if (arr[j] < arr[j + 1]) {
+                    temp++;
+                    if (j + 1 == arr.length - 1) {
+                        intial[i] = i;
+                        end[i] = j + 2;
+                        count[i] = temp + 1;
+                    }
+                } else {
+                    intial[i] = i;
+                    end[i] = j + 1;
+                    count[i] = temp + 1;
+                    break inner;
+                }
+            }
+        }
+
+        int max = -999;
+        int ind = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (count[i] > max) {
+                max = count[i];
+                ind = i;
+            }
+        }
+
+        for (int i = intial[ind]; i < end[ind]; i++) {
+            System.out.print(arr[i] + " ");
+        }
+    }
+}
