@@ -1,0 +1,23 @@
+import java.io.*;
+import java.util.*;
+
+public class cse {
+    public static void func(String str){
+        HashSet<Character> set=new HashSet<>();
+        for(int i=0;i<str.length();i++){
+            if(set.contains(str.charAt(i))){
+                System.out.println(str.charAt(i));
+            }else{
+                set.add(str.charAt(i));
+            }
+        }
+    }
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        String str=sc.nextLine();
+        func(str);
+        sc.close();
+
+    }
+    
+}
